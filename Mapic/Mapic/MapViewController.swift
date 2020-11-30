@@ -15,6 +15,14 @@ class MapViewController: UIViewController {
     var manager = CLLocationManager()
     let authorizationStatus = CLLocationManager.authorizationStatus() //TODO: find replacement
     
+    let segmentedControl: UISegmentedControl = {
+        let segmented = UISegmentedControl(items: ["Standard", "Satellite", "Hybrid"])
+        segmented.selectedSegmentIndex = 0
+        segmented.translatesAutoresizingMaskIntoConstraints = false
+        segmented.addTarget(self, action: #selector(changeType(_:)), for: .valueChanged)
+        return segmented
+    }()
+    
     @IBOutlet weak var mapView: MKMapView!
     
     
@@ -22,6 +30,9 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.addSubview(segmentedControl)
+        configurUI()
         
         // map view properties
         mapView.delegate = self
@@ -40,9 +51,34 @@ class MapViewController: UIViewController {
         
     }
     
+    // MARK: -
+    
+    // switch on map type
+    @objc func changeType(_ sgmtControl: UISegmentedControl) {
+        switch sgmtControl.selectedSegmentIndex {
+        case 0:
+            mapView.mapType = .standard
+        case 1:
+            mapView.mapType = .satellite
+        case 2:
+            mapView.mapType = .hybrid
+        default:
+            print("type not found")
+            break
+        }
+        
+    }
+    
     // MARK: - Helpers
     
-    
+    func configurUI() {
+        let margin = view.layoutMarginsGuide
+        
+        segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25).isActive = true
+        segmentedControl.leadingAnchor.constraint(equalTo: margin.leadingAnchor, constant: 15).isActive = true
+        segmentedControl.trailingAnchor.constraint(equalTo: margin.trailingAnchor, constant: -15).isActive = true
+        
+    }
 }
 
 // MARK: - MKMapViewDelegate
