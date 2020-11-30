@@ -13,6 +13,7 @@
 		A50FA08E25750F3400ACE936 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A50FA08C25750F3400ACE936 /* Main.storyboard */; };
 		A50FA09025750F3B00ACE936 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A50FA08F25750F3B00ACE936 /* Assets.xcassets */; };
 		A50FA09325750F3B00ACE936 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A50FA09125750F3B00ACE936 /* LaunchScreen.storyboard */; };
+		A50FA09D2575550100ACE936 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50FA09C2575550100ACE936 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		A50FA08F25750F3B00ACE936 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A50FA09225750F3B00ACE936 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A50FA09425750F3B00ACE936 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A50FA09C2575550100ACE936 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +60,38 @@
 			children = (
 				A50FA08625750F3400ACE936 /* AppDelegate.swift */,
 				A50FA08825750F3400ACE936 /* SceneDelegate.swift */,
-				A50FA08A25750F3400ACE936 /* MapViewController.swift */,
-				A50FA08C25750F3400ACE936 /* Main.storyboard */,
-				A50FA08F25750F3B00ACE936 /* Assets.xcassets */,
-				A50FA09125750F3B00ACE936 /* LaunchScreen.storyboard */,
+				A50FA0A12575614400ACE936 /* Storyboard */,
+				A50FA0A02575611B00ACE936 /* Controller */,
+				A50FA09F2575610800ACE936 /* Utils */,
 				A50FA09425750F3B00ACE936 /* Info.plist */,
 			);
 			path = Mapic;
+			sourceTree = "<group>";
+		};
+		A50FA09F2575610800ACE936 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A50FA09C2575550100ACE936 /* Extensions.swift */,
+				A50FA08F25750F3B00ACE936 /* Assets.xcassets */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		A50FA0A02575611B00ACE936 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A50FA08A25750F3400ACE936 /* MapViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A50FA0A12575614400ACE936 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				A50FA08C25750F3400ACE936 /* Main.storyboard */,
+				A50FA09125750F3B00ACE936 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +167,7 @@
 				A50FA08B25750F3400ACE936 /* MapViewController.swift in Sources */,
 				A50FA08725750F3400ACE936 /* AppDelegate.swift in Sources */,
 				A50FA08925750F3400ACE936 /* SceneDelegate.swift in Sources */,
+				A50FA09D2575550100ACE936 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

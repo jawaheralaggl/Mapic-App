@@ -15,10 +15,9 @@ class MapViewController: UIViewController {
     var manager = CLLocationManager() 
     let authorizationStatus = CLLocationManager.authorizationStatus() //TODO: find replacement
     
-    
     let userLocationButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = .black
+        button.backgroundColor = .mainColor
         button.setImage(UIImage(systemName: "location.north"), for: .normal)
         button.tintColor = .white
         button.layer.cornerRadius = 60 / 2
