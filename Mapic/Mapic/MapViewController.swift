@@ -67,9 +67,15 @@ class MapViewController: UIViewController {
     
     // MARK: -
     
-    // center the map on user location
+    // center the map on user location and change the button image
     @objc func userLocationTapped() {
         zoomInUserLocation()
+        userLocationButton.setImage(UIImage(systemName: "location.north.fill"), for: .normal)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5 ) {
+            // set back original image
+            self.userLocationButton.setImage(UIImage(systemName: "location.north"), for: .normal)
+        }
     }
     
     // switch on map type
