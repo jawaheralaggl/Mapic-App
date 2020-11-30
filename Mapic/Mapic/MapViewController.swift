@@ -12,8 +12,21 @@ class MapViewController: UIViewController {
     
     // MARK: - Properties
     
-    var manager = CLLocationManager()
+    var manager = CLLocationManager() 
     let authorizationStatus = CLLocationManager.authorizationStatus() //TODO: find replacement
+    
+    
+    let userLocationButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = .black
+        button.setImage(UIImage(systemName: "location.north"), for: .normal)
+        button.tintColor = .white
+        button.layer.cornerRadius = 60 / 2
+        button.clipsToBounds = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(userLocationTapped), for: .touchUpInside)
+        return button
+    }()
     
     let segmentedControl: UISegmentedControl = {
         let segmented = UISegmentedControl(items: ["Standard", "Satellite", "Hybrid"])
@@ -31,6 +44,7 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addSubview(userLocationButton)
         view.addSubview(segmentedControl)
         configurUI()
         
@@ -53,6 +67,11 @@ class MapViewController: UIViewController {
     
     // MARK: -
     
+    // center the map on user location
+    @objc func userLocationTapped() {
+        zoomInUserLocation()
+    }
+    
     // switch on map type
     @objc func changeType(_ sgmtControl: UISegmentedControl) {
         switch sgmtControl.selectedSegmentIndex {
@@ -73,6 +92,11 @@ class MapViewController: UIViewController {
     
     func configurUI() {
         let margin = view.layoutMarginsGuide
+        
+        userLocationButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        userLocationButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        userLocationButton.trailingAnchor.constraint(equalTo: margin.trailingAnchor, constant: -5).isActive = true
+        userLocationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15).isActive = true
         
         segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25).isActive = true
         segmentedControl.leadingAnchor.constraint(equalTo: margin.leadingAnchor, constant: 15).isActive = true
