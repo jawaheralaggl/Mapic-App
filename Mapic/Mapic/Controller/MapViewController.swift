@@ -43,6 +43,7 @@ class MapViewController: UIViewController {
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = .mainColor
+        cv.register(PicturesCell.self, forCellWithReuseIdentifier: "picCell")
         cv.translatesAutoresizingMaskIntoConstraints = false
         return cv
     }()
@@ -53,6 +54,10 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         
         view.addSubview(collectionView)
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
         view.addSubview(userLocationButton)
         view.addSubview(segmentedControl)
         configurUI()
@@ -172,7 +177,7 @@ extension MapViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "picCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "picCell", for: indexPath) as! PicturesCell
         return cell
     }
     
