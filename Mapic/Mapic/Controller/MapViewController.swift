@@ -8,6 +8,11 @@
 import UIKit
 import MapKit
 
+struct PicturesData {
+    var distance: String
+    var image: UIImage
+}
+
 class MapViewController: UIViewController {
     
     // MARK: - Properties
@@ -42,11 +47,22 @@ class MapViewController: UIViewController {
         layout.scrollDirection = .horizontal
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = .mainColor
+        cv.backgroundColor = .clear
         cv.register(PicturesCell.self, forCellWithReuseIdentifier: "picCell")
         cv.translatesAutoresizingMaskIntoConstraints = false
         return cv
     }()
+    
+    // set array of data from the struct properties
+    let data = [
+        PicturesData(distance: "1 km", image: #imageLiteral(resourceName: "3")),
+        PicturesData(distance: "1.5 km", image: #imageLiteral(resourceName: "4")),
+        PicturesData(distance: "1.75 km", image: #imageLiteral(resourceName: "1")),
+        PicturesData(distance: "2.5 km", image: #imageLiteral(resourceName: "2")),
+        PicturesData(distance: "2.75 km", image: #imageLiteral(resourceName: "3")),
+        PicturesData(distance: "3.0 km", image: #imageLiteral(resourceName: "4")),
+        PicturesData(distance: "3.5 km", image: #imageLiteral(resourceName: "1"))
+    ]
     
     // MARK: - Lifecycle
     
@@ -173,11 +189,12 @@ extension MapViewController: UICollectionViewDelegateFlowLayout {
 extension MapViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return data.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "picCell", for: indexPath) as! PicturesCell
+        cell.data = self.data[indexPath.row]
         return cell
     }
     
