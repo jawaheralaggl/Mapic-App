@@ -37,12 +37,22 @@ class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     
+    let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.backgroundColor = .mainColor
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        return cv
+    }()
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addSubview(collectionView)
         view.addSubview(userLocationButton)
         view.addSubview(segmentedControl)
         configurUI()
@@ -97,6 +107,11 @@ class MapViewController: UIViewController {
     
     func configurUI() {
         let margin = view.layoutMarginsGuide
+        
+        collectionView.topAnchor.constraint(equalTo: view.bottomAnchor, constant: -200).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        collectionView.heightAnchor.constraint(equalTo: collectionView.widthAnchor, multiplier: 0.5).isActive = true
         
         userLocationButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
         userLocationButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
