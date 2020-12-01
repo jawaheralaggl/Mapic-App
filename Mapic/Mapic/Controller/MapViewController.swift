@@ -25,19 +25,23 @@ class MapViewController: UIViewController {
         button.backgroundColor = .mainColor
         button.setImage(UIImage(systemName: "location.north"), for: .normal)
         button.tintColor = .white
-        button.layer.cornerRadius = 60 / 2
+        button.layer.cornerRadius = 50 / 2
         button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(userLocationTapped), for: .touchUpInside)
         return button
     }()
     
-    let segmentedControl: UISegmentedControl = {
-        let segmented = UISegmentedControl(items: ["Standard", "Satellite", "Hybrid"])
-        segmented.selectedSegmentIndex = 0
-        segmented.translatesAutoresizingMaskIntoConstraints = false
-        segmented.addTarget(self, action: #selector(changeType(_:)), for: .valueChanged)
-        return segmented
+    let mapTypeButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = .mainColor
+        button.setImage(UIImage(systemName: "map"), for: .normal)
+        button.tintColor = .white
+        button.layer.cornerRadius = 50 / 2
+        button.clipsToBounds = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(typeTapped), for: .touchUpInside)
+        return button
     }()
     
     @IBOutlet weak var mapView: MKMapView!
@@ -74,8 +78,8 @@ class MapViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        view.addSubview(mapTypeButton)
         view.addSubview(userLocationButton)
-        view.addSubview(segmentedControl)
         configurUI()
         
         // map view properties
@@ -95,7 +99,18 @@ class MapViewController: UIViewController {
         
     }
     
-    // MARK: -
+    // MARK: - Selectors
+    
+    // toggle map type when button is selected
+    var isChecked = false
+    @objc func typeTapped() {
+        isChecked = !isChecked
+        if isChecked {
+            mapView.mapType = .satellite
+        } else {
+            mapView.mapType = .standard
+        }
+    }
     
     // center the map on user location and change the button image
     @objc func userLocationTapped() {
@@ -108,41 +123,25 @@ class MapViewController: UIViewController {
         }
     }
     
-    // switch on map type
-    @objc func changeType(_ sgmtControl: UISegmentedControl) {
-        switch sgmtControl.selectedSegmentIndex {
-        case 0:
-            mapView.mapType = .standard
-        case 1:
-            mapView.mapType = .satellite
-        case 2:
-            mapView.mapType = .hybrid
-        default:
-            print("type not found")
-            break
-        }
-        
-    }
-    
     // MARK: - Helpers
     
     func configurUI() {
         let margin = view.layoutMarginsGuide
         
-        collectionView.topAnchor.constraint(equalTo: view.bottomAnchor, constant: -200).isActive = true
+        collectionView.topAnchor.constraint(equalTo: view.bottomAnchor, constant: -190).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         collectionView.heightAnchor.constraint(equalTo: collectionView.widthAnchor, multiplier: 0.5).isActive = true
         
-        userLocationButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        userLocationButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        userLocationButton.trailingAnchor.constraint(equalTo: margin.trailingAnchor, constant: -5).isActive = true
-        userLocationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15).isActive = true
+        userLocationButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        userLocationButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        userLocationButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 90).isActive = true
+        userLocationButton.trailingAnchor.constraint(equalTo: margin.trailingAnchor, constant: -0).isActive = true
         
-        segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25).isActive = true
-        segmentedControl.leadingAnchor.constraint(equalTo: margin.leadingAnchor, constant: 15).isActive = true
-        segmentedControl.trailingAnchor.constraint(equalTo: margin.trailingAnchor, constant: -15).isActive = true
-        
+        mapTypeButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        mapTypeButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        mapTypeButton.topAnchor.constraint(equalTo: userLocationButton.bottomAnchor, constant: 8).isActive = true
+        mapTypeButton.trailingAnchor.constraint(equalTo: margin.trailingAnchor, constant: -0).isActive = true
     }
 }
 

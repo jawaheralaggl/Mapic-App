@@ -30,7 +30,7 @@ class PicturesCell: UICollectionViewCell {
     let distanceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textColor = .white
         return label
     }()
