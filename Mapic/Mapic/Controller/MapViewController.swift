@@ -155,3 +155,25 @@ extension MapViewController: CLLocationManagerDelegate {
     }
     
 }
+
+// MARK: - UICollectionViewDelegateFlowLayout\DataSource
+
+extension MapViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: collectionView.frame.width/3.5)
+    }
+}
+
+extension MapViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "picCell", for: indexPath)
+        return cell
+    }
+    
+}
