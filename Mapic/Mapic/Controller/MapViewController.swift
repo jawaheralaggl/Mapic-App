@@ -197,4 +197,11 @@ extension MapViewController: UICollectionViewDataSource {
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "PictureInfoViewController") as! PictureInfoViewController
+        controller.data = self.data[indexPath.row] // pass selected cell data to next view
+        present(controller, animated: true)
+    }
+    
 }

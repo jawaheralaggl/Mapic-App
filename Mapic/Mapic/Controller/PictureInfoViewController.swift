@@ -11,6 +11,7 @@ class PictureInfoViewController: UIViewController {
     
     // MARK: - Properties
     
+    // passing data..
     var data: PicturesData? {
         didSet {
             guard let data = data else { return }
@@ -23,8 +24,6 @@ class PictureInfoViewController: UIViewController {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.contentMode = .scaleAspectFill
-        iv.clipsToBounds = true
-        iv.layer.cornerRadius = 12
         return iv
     }()
     
@@ -50,7 +49,6 @@ class PictureInfoViewController: UIViewController {
         view.addSubview(distanceLabel)
         distanceLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 25).isActive = true
         distanceLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8).isActive = true
-        
     }
     
 }
