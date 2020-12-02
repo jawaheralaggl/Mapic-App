@@ -9,21 +9,27 @@
 /* Begin PBXBuildFile section */
 		A50FA08725750F3400ACE936 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50FA08625750F3400ACE936 /* AppDelegate.swift */; };
 		A50FA08925750F3400ACE936 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50FA08825750F3400ACE936 /* SceneDelegate.swift */; };
-		A50FA08B25750F3400ACE936 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50FA08A25750F3400ACE936 /* ViewController.swift */; };
+		A50FA08B25750F3400ACE936 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50FA08A25750F3400ACE936 /* MapViewController.swift */; };
 		A50FA08E25750F3400ACE936 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A50FA08C25750F3400ACE936 /* Main.storyboard */; };
 		A50FA09025750F3B00ACE936 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A50FA08F25750F3B00ACE936 /* Assets.xcassets */; };
 		A50FA09325750F3B00ACE936 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A50FA09125750F3B00ACE936 /* LaunchScreen.storyboard */; };
+		A50FA09D2575550100ACE936 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50FA09C2575550100ACE936 /* Extensions.swift */; };
+		A50FA0B32576673F00ACE936 /* PicturesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50FA0B22576673F00ACE936 /* PicturesCell.swift */; };
+		A5A6EA9025768EF800AB85C5 /* PictureInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A6EA8F25768EF800AB85C5 /* PictureInfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A50FA08325750F3400ACE936 /* Mapic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mapic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A50FA08625750F3400ACE936 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A50FA08825750F3400ACE936 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A50FA08A25750F3400ACE936 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A50FA08A25750F3400ACE936 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A50FA08D25750F3400ACE936 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A50FA08F25750F3B00ACE936 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A50FA09225750F3B00ACE936 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A50FA09425750F3B00ACE936 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A50FA09C2575550100ACE936 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		A50FA0B22576673F00ACE936 /* PicturesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturesCell.swift; sourceTree = "<group>"; };
+		A5A6EA8F25768EF800AB85C5 /* PictureInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureInfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +64,56 @@
 			children = (
 				A50FA08625750F3400ACE936 /* AppDelegate.swift */,
 				A50FA08825750F3400ACE936 /* SceneDelegate.swift */,
-				A50FA08A25750F3400ACE936 /* ViewController.swift */,
-				A50FA08C25750F3400ACE936 /* Main.storyboard */,
-				A50FA08F25750F3B00ACE936 /* Assets.xcassets */,
-				A50FA09125750F3B00ACE936 /* LaunchScreen.storyboard */,
+				A50FA0A12575614400ACE936 /* Storyboard */,
+				A51973FD25780EE60090E634 /* View */,
+				A50FA0B5257667F700ACE936 /* Model */,
+				A50FA0A02575611B00ACE936 /* Controller */,
+				A50FA09F2575610800ACE936 /* Utils */,
 				A50FA09425750F3B00ACE936 /* Info.plist */,
 			);
 			path = Mapic;
+			sourceTree = "<group>";
+		};
+		A50FA09F2575610800ACE936 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A50FA09C2575550100ACE936 /* Extensions.swift */,
+				A50FA08F25750F3B00ACE936 /* Assets.xcassets */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		A50FA0A02575611B00ACE936 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A50FA08A25750F3400ACE936 /* MapViewController.swift */,
+				A5A6EA8F25768EF800AB85C5 /* PictureInfoViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A50FA0A12575614400ACE936 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				A50FA08C25750F3400ACE936 /* Main.storyboard */,
+				A50FA09125750F3B00ACE936 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		A50FA0B5257667F700ACE936 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A51973FD25780EE60090E634 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A50FA0B22576673F00ACE936 /* PicturesCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,9 +186,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A50FA08B25750F3400ACE936 /* ViewController.swift in Sources */,
+				A50FA08B25750F3400ACE936 /* MapViewController.swift in Sources */,
 				A50FA08725750F3400ACE936 /* AppDelegate.swift in Sources */,
 				A50FA08925750F3400ACE936 /* SceneDelegate.swift in Sources */,
+				A50FA0B32576673F00ACE936 /* PicturesCell.swift in Sources */,
+				A50FA09D2575550100ACE936 /* Extensions.swift in Sources */,
+				A5A6EA9025768EF800AB85C5 /* PictureInfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +341,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6W4MA25Y33;
 				INFOPLIST_FILE = Mapic/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -308,6 +361,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6W4MA25Y33;
 				INFOPLIST_FILE = Mapic/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -62,5 +62,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Mapic app requires your location to display pictures around you</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Mapic app requires your location to display pictures around you</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Mapic app requires your location to display pictures around you</string>
 </dict>
 </plist>
