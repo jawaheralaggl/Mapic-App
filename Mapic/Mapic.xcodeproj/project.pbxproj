@@ -65,6 +65,7 @@
 				A50FA08625750F3400ACE936 /* AppDelegate.swift */,
 				A50FA08825750F3400ACE936 /* SceneDelegate.swift */,
 				A50FA0A12575614400ACE936 /* Storyboard */,
+				A51973FD25780EE60090E634 /* View */,
 				A50FA0B5257667F700ACE936 /* Model */,
 				A50FA0A02575611B00ACE936 /* Controller */,
 				A50FA09F2575610800ACE936 /* Utils */,
@@ -103,9 +104,16 @@
 		A50FA0B5257667F700ACE936 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A50FA0B22576673F00ACE936 /* PicturesCell.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		A51973FD25780EE60090E634 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A50FA0B22576673F00ACE936 /* PicturesCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
