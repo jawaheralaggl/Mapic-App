@@ -19,6 +19,7 @@ class MapViewController: UIViewController {
     
     var manager = CLLocationManager() 
     let authorizationStatus = CLLocationManager.authorizationStatus() //TODO: find replacement
+    var pinCoordinate: CLLocationCoordinate2D!
     
     let userLocationButton: UIButton = {
         let button = UIButton(type: .system)
@@ -149,11 +150,29 @@ class MapViewController: UIViewController {
 
 extension MapViewController: MKMapViewDelegate {
     
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        // return nil to display the default system view (blue beacon)
+        if annotation is MKUserLocation {
+            return nil
+        }
+        
+        // create custom view (pin)
+        let pinAnnotation = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "locationPin")
+        pinAnnotation.pinTintColor = .mainColor
+        pinAnnotation.animatesDrop = true
+        return pinAnnotation
+    }
+    
     // set the region to center the map on user location
     func zoomInUserLocation() {
         guard let coordinate = manager.location?.coordinate else { return }
         let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 1000 , longitudinalMeters: 1000)
         mapView.setRegion(region, animated: true)
+        
+        // drop pin on user location
+        let pinAnnotation = Pin(identifier: "locationPin", coordinate: coordinate)
+        mapView.addAnnotation(pinAnnotation)
     }
     
 }

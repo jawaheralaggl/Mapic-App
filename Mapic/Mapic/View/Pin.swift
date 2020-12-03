@@ -8,7 +8,7 @@
 import Foundation
 import MapKit
 
-class Pin: NSObject {
+class Pin: NSObject, MKAnnotation {
     var identifier: String
     var coordinate: CLLocationCoordinate2D
     
