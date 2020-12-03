@@ -170,9 +170,25 @@ extension MapViewController: MKMapViewDelegate {
         let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 1000 , longitudinalMeters: 1000)
         mapView.setRegion(region, animated: true)
         
+        collectionView.reloadData()
+        
         // drop pin on user location
         let pinAnnotation = Pin(identifier: "locationPin", coordinate: coordinate)
         mapView.addAnnotation(pinAnnotation)
+        
+        FlickrService.shared.fetchUrls(forAnnotation: pinAnnotation) { (checked) in
+            if checked {
+                FlickrService.shared.fetchImages { (checked) in
+                    if checked {
+                        DispatchQueue.main.async {
+                            self.collectionView.reloadData()
+                        }
+                    }
+                }
+                
+            }
+        }
+        
     }
     
 }
@@ -207,12 +223,13 @@ extension MapViewController: UICollectionViewDelegateFlowLayout {
 extension MapViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data.count
+        return FlickrService.shared.pictureArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "picCell", for: indexPath) as! PicturesCell
-        cell.data = self.data[indexPath.row]
+        let picOfIndex = FlickrService.shared.pictureArray[indexPath.row]
+        cell.imageView.image = picOfIndex
         return cell
     }
     
