@@ -8,11 +8,6 @@
 import UIKit
 import MapKit
 
-struct PicturesData {
-    var distance: String
-    var image: UIImage
-}
-
 class MapViewController: UIViewController {
     
     // MARK: - Properties
@@ -57,17 +52,6 @@ class MapViewController: UIViewController {
         cv.translatesAutoresizingMaskIntoConstraints = false
         return cv
     }()
-    
-    // set array of data from the struct properties
-    let data = [
-        PicturesData(distance: "1 km", image: #imageLiteral(resourceName: "3")),
-        PicturesData(distance: "1.5 km", image: #imageLiteral(resourceName: "4")),
-        PicturesData(distance: "1.75 km", image: #imageLiteral(resourceName: "1")),
-        PicturesData(distance: "2.5 km", image: #imageLiteral(resourceName: "2")),
-        PicturesData(distance: "2.75 km", image: #imageLiteral(resourceName: "3")),
-        PicturesData(distance: "3.0 km", image: #imageLiteral(resourceName: "4")),
-        PicturesData(distance: "3.5 km", image: #imageLiteral(resourceName: "1"))
-    ]
     
     // MARK: - Lifecycle
     
@@ -236,7 +220,8 @@ extension MapViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "PictureInfoViewController") as! PictureInfoViewController
-        controller.data = self.data[indexPath.row] // pass selected cell data to next view
+        // pass selected cell data to next view
+        controller.passData(forPic: FlickrService.shared.pictureArray[indexPath.row])
         present(controller, animated: true)
     }
     
