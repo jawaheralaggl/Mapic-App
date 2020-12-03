@@ -12,6 +12,11 @@ import AlamofireImage
 class FlickrService {
     static let shared = FlickrService()
     
+    // MARK: - Properties
+
+
     
+    // MARK: - Helpers
+
     
 }
