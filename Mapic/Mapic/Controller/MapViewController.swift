@@ -15,6 +15,8 @@ class MapViewController: UIViewController {
     var manager = CLLocationManager() 
     let authorizationStatus = CLLocationManager.authorizationStatus() //TODO: find replacement
     var pinCoordinate: CLLocationCoordinate2D!
+    var spinner: UIActivityIndicatorView?
+    var screenSize = UIScreen.main.bounds
     
     let userLocationButton: UIButton = {
         let button = UIButton(type: .system)
@@ -110,6 +112,21 @@ class MapViewController: UIViewController {
     
     // MARK: - Helpers
     
+    func addSpinner() {
+        spinner = UIActivityIndicatorView()
+        spinner?.style = UIActivityIndicatorView.Style.large
+        spinner?.center = CGPoint(x: screenSize.width / 2, y: 100)
+        spinner?.color = .mainColor
+        spinner?.startAnimating()
+        collectionView.addSubview(spinner!)
+    }
+    
+    func removeSpinner() {
+        if spinner != nil {
+            spinner?.removeFromSuperview()
+        }
+    }
+    
     func configurUI() {
         let margin = view.layoutMarginsGuide
         
@@ -155,6 +172,7 @@ extension MapViewController: MKMapViewDelegate {
         mapView.setRegion(region, animated: true)
         
         collectionView.reloadData()
+        addSpinner()
         
         // drop pin on user location
         let pinAnnotation = Pin(identifier: "locationPin", coordinate: coordinate)
@@ -165,6 +183,7 @@ extension MapViewController: MKMapViewDelegate {
                 FlickrService.shared.fetchImages { (checked) in
                     if checked {
                         DispatchQueue.main.async {
+                            self.removeSpinner()
                             self.collectionView.reloadData()
                         }
                     }
