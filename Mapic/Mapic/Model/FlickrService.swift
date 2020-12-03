@@ -13,7 +13,7 @@ class FlickrService {
     static let shared = FlickrService()
     
     // MARK: - Properties
-
+    
     var picUrlArray = [String]()
     var pictureArray = [UIImage]()
     
@@ -27,6 +27,46 @@ class FlickrService {
     }
     
     // MARK: - Helpers
-
+    
+    func fetchUrls(forAnnotation annotation: Pin, handler: @escaping (_ status: Bool) -> ()) {
+        picUrlArray = []
+        
+        // make a request..
+        AF.request(flickrURL(apiKey: apiKey, pinAnnotation: annotation, numberOfPhotos: 50)).responseJSON { (response) in
+            
+            guard let jsonResponse = response.value as? Dictionary<String, AnyObject> else { return }
+            
+            let picDictionary = jsonResponse["photos"] as! Dictionary<String, AnyObject>
+            let picsDictionaryArray = picDictionary["photo"] as! [Dictionary<String, AnyObject>]
+            
+            // loop over photos in the array
+            for pic in picsDictionaryArray {
+                let url = "https://live.staticflickr.com/\(pic["server"]!)/\(pic["id"]!)_\(pic["secret"]!)_b_d.jpg"
+                self.picUrlArray.append(url)
+            }
+            handler(true)
+        }
+    }
+    
+    func fetchImages(handler: @escaping (_ status: Bool) -> ()) {
+        pictureArray = []
+        
+        // loop over photos URL in the array
+        for url in picUrlArray {
+            AF.request(url).responseImage { response in
+                
+                guard let imageResponse = response.value else { return }
+                self.pictureArray.append(imageResponse)
+                print("\(self.pictureArray.count)/50 IMAGES DOWNLOADED")
+                
+                // check if all pictures has been downloaded successfully
+                if self.pictureArray.count == self.picUrlArray.count {
+                    handler(true)
+                }
+            }
+        }
+        
+    }
+    
     
 }
