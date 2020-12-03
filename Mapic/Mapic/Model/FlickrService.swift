@@ -16,6 +16,7 @@ class FlickrService {
     
     var picUrlArray = [String]()
     var pictureArray = [UIImage]()
+    var picTitleArray = [String]()
     
     let baseURLString = "https://api.flickr.com/services/rest"
     let endPoint = "flickr.photos.search"
@@ -43,6 +44,13 @@ class FlickrService {
             for pic in picsDictionaryArray {
                 let url = "https://live.staticflickr.com/\(pic["server"]!)/\(pic["id"]!)_\(pic["secret"]!)_b_d.jpg"
                 self.picUrlArray.append(url)
+                
+                // add images title in new array
+                if pic["title"] == nil {
+                    self.picTitleArray.append("")
+                }else{
+                    self.picTitleArray.append(pic["title"] as! String)
+                }
             }
             handler(true)
         }

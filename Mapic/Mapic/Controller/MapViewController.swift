@@ -240,7 +240,7 @@ extension MapViewController: UICollectionViewDataSource {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "PictureInfoViewController") as! PictureInfoViewController
         // pass selected cell data to next view
-        controller.passData(forPic: FlickrService.shared.pictureArray[indexPath.row])
+        controller.passData(forPic: FlickrService.shared.pictureArray[indexPath.row], forTitle: FlickrService.shared.picTitleArray[indexPath.row])
         present(controller, animated: true)
     }
     

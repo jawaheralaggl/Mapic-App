@@ -12,6 +12,7 @@ class PictureInfoViewController: UIViewController {
     // MARK: - Properties
     
     var passedIPictures: UIImage!
+    var passedTitle: String!
     
     let imageView: UIImageView = {
         let iv = UIImageView()
@@ -20,11 +21,21 @@ class PictureInfoViewController: UIViewController {
         return iv
     }()
     
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.boldSystemFont(ofSize: 30)
+        label.textAlignment = .left
+        label.textColor = .mainColor
+        return label
+    }()
+    
     let distanceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.textColor = .white
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.textColor = .mainColor
+        label.text = "1.0 km"
         return label
     }()
     
@@ -34,6 +45,7 @@ class PictureInfoViewController: UIViewController {
         super.viewDidLoad()
         
         imageView.image = passedIPictures
+        titleLabel.text = passedTitle
         
         view.addSubview(imageView)
         imageView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -41,15 +53,21 @@ class PictureInfoViewController: UIViewController {
         imageView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
+        view.addSubview(titleLabel)
+        titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 25).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80).isActive = true
+        
         view.addSubview(distanceLabel)
-        distanceLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 25).isActive = true
+        distanceLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
         distanceLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8).isActive = true
     }
     
     // MARK: - Helpers
     
-    func passData(forPic pic: UIImage) {
+    func passData(forPic pic: UIImage, forTitle title: String) {
         self.passedIPictures = pic
+        self.passedTitle = title
     }
     
 }
