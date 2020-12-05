@@ -87,6 +87,13 @@ class MapViewController: UIViewController {
         // register peek and pop if available
         guard traitCollection.forceTouchCapability == .available else { return }
         registerForPreviewing(with: self, sourceView: collectionView)
+        
+        // display Onboarding screens
+        let storyboard = UIStoryboard(name: "Onboarding", bundle: nil)
+        if let walkthroughVC = storyboard.instantiateViewController(withIdentifier: "WalkThroughViewController") as? WalkThroughViewController {
+            walkthroughVC.modalPresentationStyle = .fullScreen
+            present(walkthroughVC, animated: true, completion: nil)
+        }
     }
     
     // MARK: - Selectors

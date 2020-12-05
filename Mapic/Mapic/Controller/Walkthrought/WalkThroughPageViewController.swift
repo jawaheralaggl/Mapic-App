@@ -17,6 +17,9 @@ class WalkThroughPageViewController: UIPageViewController, UIPageViewControllerD
     
     weak var walkThroughDelegate: WalkThroughPageViewControllerDelegate?
     
+    var pageHeadings = ["WELCOME", "DISCOVER NEW PLACES"]
+    var pageSubHeadings = ["Explore the world with Mapic", "Find pictures shared by people around you"]
+    
     var currentIndex = 0
     
     // MARK: - Lifecycle
@@ -65,12 +68,17 @@ class WalkThroughPageViewController: UIPageViewController, UIPageViewControllerD
     // MARK: - Helpers
     
     func contentViewController(at index: Int) -> WalkThroughContentController? {
+        if index < 0 || index >= pageHeadings.count {
+            return nil
+        }
       
         // create new view controller and pass the data
         let storyboard = UIStoryboard(name: "Onboarding", bundle: nil)
         
         if let pageContentViewController = storyboard.instantiateViewController(withIdentifier: "WalkThroughContentController") as? WalkThroughContentController {
             pageContentViewController.index = index
+            pageContentViewController.heading = pageHeadings[index]
+            pageContentViewController.subHeading = pageSubHeadings[index]
             
             return pageContentViewController
         }
