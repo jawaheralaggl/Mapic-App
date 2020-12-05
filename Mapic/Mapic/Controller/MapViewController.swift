@@ -61,11 +61,10 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(collectionView)
-        
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        view.addSubview(collectionView)
         view.addSubview(mapTypeButton)
         view.addSubview(userLocationButton)
         configurUI()
@@ -273,12 +272,11 @@ extension MapViewController: UIViewControllerPreviewingDelegate {
 
         // get the index path of the cell we are force touching on
         guard let indexPath = collectionView.indexPathForItem(at: location) else {return nil}
-
         // get the actual cell instance for the index path
         guard let cell = collectionView.cellForItem(at: indexPath) else {return nil}
 
         guard let infoVC = storyboard?.instantiateViewController(withIdentifier: "PictureInfoViewController") as? PictureInfoViewController else {return nil}
-        infoVC.passData(forPic: FlickrService.shared.pictureArray[indexPath.row], forTitle: "", forDistance: "")
+        infoVC.passData(forPic: FlickrService.shared.pictureArray[indexPath.row], forTitle: FlickrService.shared.picTitleArray[indexPath.row], forDistance: "")
 
         // set the content size for the info view controller
         infoVC.preferredContentSize = CGSize(width: 0, height: 300)
