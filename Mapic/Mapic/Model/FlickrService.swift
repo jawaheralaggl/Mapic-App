@@ -52,7 +52,9 @@ class FlickrService {
                     self.picTitleArray.append(pic["title"] as! String)
                 }
             }
-            handler(true)
+            DispatchQueue.main.async {
+                handler(true)
+            }
         }
     }
     
@@ -69,7 +71,9 @@ class FlickrService {
                 
                 // check if all pictures has been downloaded successfully
                 if self.pictureArray.count == self.picUrlArray.count {
-                    handler(true)
+                    DispatchQueue.main.async {
+                        handler(true)
+                    }
                 }
             }
         }
