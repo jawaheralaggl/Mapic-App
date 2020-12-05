@@ -9,15 +9,6 @@ import UIKit
 
 class PicturesCell: UICollectionViewCell {
     
-    // pass data from Model to Controller
-    var data: PicturesData? {
-        didSet {
-            guard let data = data else { return }
-            imageView.image = data.image
-            distanceLabel.text = data.distance
-        }
-    }
-    
     let imageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false

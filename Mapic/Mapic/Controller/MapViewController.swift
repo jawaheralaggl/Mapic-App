@@ -7,11 +7,7 @@
 
 import UIKit
 import MapKit
-
-struct PicturesData {
-    var distance: String
-    var image: UIImage
-}
+import CoreLocation
 
 class MapViewController: UIViewController {
     
@@ -19,6 +15,9 @@ class MapViewController: UIViewController {
     
     var manager = CLLocationManager() 
     let authorizationStatus = CLLocationManager.authorizationStatus() //TODO: find replacement
+    var pinCoordinate: CLLocationCoordinate2D!
+    var spinner: UIActivityIndicatorView?
+    var screenSize = UIScreen.main.bounds
     
     let userLocationButton: UIButton = {
         let button = UIButton(type: .system)
@@ -56,17 +55,6 @@ class MapViewController: UIViewController {
         cv.translatesAutoresizingMaskIntoConstraints = false
         return cv
     }()
-    
-    // set array of data from the struct properties
-    let data = [
-        PicturesData(distance: "1 km", image: #imageLiteral(resourceName: "3")),
-        PicturesData(distance: "1.5 km", image: #imageLiteral(resourceName: "4")),
-        PicturesData(distance: "1.75 km", image: #imageLiteral(resourceName: "1")),
-        PicturesData(distance: "2.5 km", image: #imageLiteral(resourceName: "2")),
-        PicturesData(distance: "2.75 km", image: #imageLiteral(resourceName: "3")),
-        PicturesData(distance: "3.0 km", image: #imageLiteral(resourceName: "4")),
-        PicturesData(distance: "3.5 km", image: #imageLiteral(resourceName: "1"))
-    ]
     
     // MARK: - Lifecycle
     
@@ -125,6 +113,27 @@ class MapViewController: UIViewController {
     
     // MARK: - Helpers
     
+    func removePin() {
+        for annotation in mapView.annotations {
+            mapView.removeAnnotation(annotation)
+        }
+    }
+    
+    func addSpinner() {
+        spinner = UIActivityIndicatorView()
+        spinner?.style = UIActivityIndicatorView.Style.large
+        spinner?.center = CGPoint(x: screenSize.width / 2, y: 100)
+        spinner?.color = .mainColor
+        spinner?.startAnimating()
+        collectionView.addSubview(spinner!)
+    }
+    
+    func removeSpinner() {
+        if spinner != nil {
+            spinner?.removeFromSuperview()
+        }
+    }
+    
     func configurUI() {
         let margin = view.layoutMarginsGuide
         
@@ -135,7 +144,7 @@ class MapViewController: UIViewController {
         
         userLocationButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         userLocationButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        userLocationButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 90).isActive = true
+        userLocationButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 110).isActive = true
         userLocationButton.trailingAnchor.constraint(equalTo: margin.trailingAnchor, constant: -0).isActive = true
         
         mapTypeButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
@@ -149,11 +158,50 @@ class MapViewController: UIViewController {
 
 extension MapViewController: MKMapViewDelegate {
     
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        // return nil to display the default system view (blue beacon)
+        if annotation is MKUserLocation {
+            return nil
+        }
+        
+        // create custom view (pin)
+        let pinAnnotation = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "locationPin")
+        pinAnnotation.pinTintColor = .mainColor
+        pinAnnotation.animatesDrop = true
+        return pinAnnotation
+    }
+    
     // set the region to center the map on user location
     func zoomInUserLocation() {
         guard let coordinate = manager.location?.coordinate else { return }
         let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 1000 , longitudinalMeters: 1000)
         mapView.setRegion(region, animated: true)
+        
+        removeSpinner()
+        removePin()
+        collectionView.reloadData()
+        addSpinner()
+        
+        // drop pin on user location
+        let pinAnnotation = Pin(identifier: "locationPin", coordinate: coordinate)
+        mapView.addAnnotation(pinAnnotation)
+        
+        FlickrService.shared.fetchUrls(forAnnotation: pinAnnotation) { (checked) in
+            if checked {
+                FlickrService.shared.fetchImages { (checked) in
+                    if checked {
+                        // dispatch to the main thread to update UI
+                        DispatchQueue.main.async { [weak self] in
+                            self?.removeSpinner()
+                            self?.collectionView.reloadData()
+                        }
+                    }
+                }
+                
+            }
+        }
+        
     }
     
 }
@@ -188,19 +236,26 @@ extension MapViewController: UICollectionViewDelegateFlowLayout {
 extension MapViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data.count
+        return FlickrService.shared.pictureArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "picCell", for: indexPath) as! PicturesCell
-        cell.data = self.data[indexPath.row]
+        let picOfIndex = FlickrService.shared.pictureArray[indexPath.row]
+        cell.imageView.image = picOfIndex
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "PictureInfoViewController") as! PictureInfoViewController
-        controller.data = self.data[indexPath.row] // pass selected cell data to next view
+        // calculate distance
+        let userLocation = CLLocation(latitude: (manager.location?.coordinate.latitude)!, longitude: (manager.location?.coordinate.longitude)!)
+        let pictureLocation = CLLocation(latitude: 24.853789, longitude: 46.713183)
+        let distance = userLocation.distance(from: pictureLocation) / 1000
+        
+        // pass selected cell data to next view
+        controller.passData(forPic: FlickrService.shared.pictureArray[indexPath.row], forTitle: FlickrService.shared.picTitleArray[indexPath.row], forDistance: String(format: "%.02fkm", distance))
         present(controller, animated: true)
     }
     
