@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,16 +14,9 @@
 		A50FA09025750F3B00ACE936 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A50FA08F25750F3B00ACE936 /* Assets.xcassets */; };
 		A50FA09325750F3B00ACE936 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A50FA09125750F3B00ACE936 /* LaunchScreen.storyboard */; };
 		A50FA09D2575550100ACE936 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50FA09C2575550100ACE936 /* Extensions.swift */; };
-		A50FA0B32576673F00ACE936 /* PicturesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50FA0B22576673F00ACE936 /* PicturesCell.swift */; };
-		A518A2C5257919D100F7DD1A /* FlickrService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A518A2C4257919D100F7DD1A /* FlickrService.swift */; };
-		A518A2C825791BB400F7DD1A /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A518A2C725791BB400F7DD1A /* Pin.swift */; };
-		A5A6EA9025768EF800AB85C5 /* PictureInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A6EA8F25768EF800AB85C5 /* PictureInfoViewController.swift */; };
-		D20258880FEFE925331CA830 /* Pods_Mapic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FF75C8F76867D20D5A51607 /* Pods_Mapic.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0DA8D0B5796398620612C41A /* Pods-Mapic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mapic.release.xcconfig"; path = "Target Support Files/Pods-Mapic/Pods-Mapic.release.xcconfig"; sourceTree = "<group>"; };
-		1FF75C8F76867D20D5A51607 /* Pods_Mapic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mapic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A50FA08325750F3400ACE936 /* Mapic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mapic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A50FA08625750F3400ACE936 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A50FA08825750F3400ACE936 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -33,11 +26,6 @@
 		A50FA09225750F3B00ACE936 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A50FA09425750F3B00ACE936 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A50FA09C2575550100ACE936 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		A50FA0B22576673F00ACE936 /* PicturesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturesCell.swift; sourceTree = "<group>"; };
-		A518A2C4257919D100F7DD1A /* FlickrService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrService.swift; sourceTree = "<group>"; };
-		A518A2C725791BB400F7DD1A /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
-		A5A6EA8F25768EF800AB85C5 /* PictureInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureInfoViewController.swift; sourceTree = "<group>"; };
-		FD175B83F4BA9BECA2C10933 /* Pods-Mapic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mapic.debug.xcconfig"; path = "Target Support Files/Pods-Mapic/Pods-Mapic.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,29 +33,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D20258880FEFE925331CA830 /* Pods_Mapic.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		39411D74A98BCD19D68F6505 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				FD175B83F4BA9BECA2C10933 /* Pods-Mapic.debug.xcconfig */,
-				0DA8D0B5796398620612C41A /* Pods-Mapic.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		A50FA07A25750F3400ACE936 = {
 			isa = PBXGroup;
 			children = (
 				A50FA08525750F3400ACE936 /* Mapic */,
 				A50FA08425750F3400ACE936 /* Products */,
-				39411D74A98BCD19D68F6505 /* Pods */,
-				A86940963449A96B92072468 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -85,8 +61,6 @@
 				A50FA08625750F3400ACE936 /* AppDelegate.swift */,
 				A50FA08825750F3400ACE936 /* SceneDelegate.swift */,
 				A50FA0A12575614400ACE936 /* Storyboard */,
-				A51973FD25780EE60090E634 /* View */,
-				A50FA0B5257667F700ACE936 /* Model */,
 				A50FA0A02575611B00ACE936 /* Controller */,
 				A50FA09F2575610800ACE936 /* Utils */,
 				A50FA09425750F3B00ACE936 /* Info.plist */,
@@ -107,7 +81,6 @@
 			isa = PBXGroup;
 			children = (
 				A50FA08A25750F3400ACE936 /* MapViewController.swift */,
-				A5A6EA8F25768EF800AB85C5 /* PictureInfoViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -121,31 +94,6 @@
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
-		A50FA0B5257667F700ACE936 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				A518A2C4257919D100F7DD1A /* FlickrService.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		A51973FD25780EE60090E634 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				A50FA0B22576673F00ACE936 /* PicturesCell.swift */,
-				A518A2C725791BB400F7DD1A /* Pin.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		A86940963449A96B92072468 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				1FF75C8F76867D20D5A51607 /* Pods_Mapic.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -153,11 +101,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A50FA09725750F3B00ACE936 /* Build configuration list for PBXNativeTarget "Mapic" */;
 			buildPhases = (
-				CBD0FE4C9212377CA1F61DF7 /* [CP] Check Pods Manifest.lock */,
 				A50FA07F25750F3400ACE936 /* Sources */,
 				A50FA08025750F3400ACE936 /* Frameworks */,
 				A50FA08125750F3400ACE936 /* Resources */,
-				8BBAA41A9F99A11C2501EE86 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -213,61 +159,15 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		8BBAA41A9F99A11C2501EE86 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Mapic/Pods-Mapic-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Mapic/Pods-Mapic-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Mapic/Pods-Mapic-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CBD0FE4C9212377CA1F61DF7 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Mapic-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		A50FA07F25750F3400ACE936 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				A50FA08B25750F3400ACE936 /* MapViewController.swift in Sources */,
-				A518A2C5257919D100F7DD1A /* FlickrService.swift in Sources */,
 				A50FA08725750F3400ACE936 /* AppDelegate.swift in Sources */,
-				A518A2C825791BB400F7DD1A /* Pin.swift in Sources */,
 				A50FA08925750F3400ACE936 /* SceneDelegate.swift in Sources */,
-				A50FA0B32576673F00ACE936 /* PicturesCell.swift in Sources */,
 				A50FA09D2575550100ACE936 /* Extensions.swift in Sources */,
-				A5A6EA9025768EF800AB85C5 /* PictureInfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,14 +311,13 @@
 		};
 		A50FA09825750F3B00ACE936 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FD175B83F4BA9BECA2C10933 /* Pods-Mapic.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6W4MA25Y33;
 				INFOPLIST_FILE = Mapic/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -432,14 +331,13 @@
 		};
 		A50FA09925750F3B00ACE936 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0DA8D0B5796398620612C41A /* Pods-Mapic.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6W4MA25Y33;
 				INFOPLIST_FILE = Mapic/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
