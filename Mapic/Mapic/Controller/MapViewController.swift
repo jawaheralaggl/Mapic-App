@@ -7,6 +7,7 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 class MapViewController: UIViewController {
     
@@ -14,37 +15,59 @@ class MapViewController: UIViewController {
     
     var manager = CLLocationManager() 
     let authorizationStatus = CLLocationManager.authorizationStatus() //TODO: find replacement
+    var pinCoordinate: CLLocationCoordinate2D!
+    var spinner: UIActivityIndicatorView?
+    var screenSize = UIScreen.main.bounds
     
     let userLocationButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = .mainColor
         button.setImage(UIImage(systemName: "location.north"), for: .normal)
         button.tintColor = .white
-        button.layer.cornerRadius = 60 / 2
+        button.layer.cornerRadius = 50 / 2
         button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(userLocationTapped), for: .touchUpInside)
         return button
     }()
     
-    let segmentedControl: UISegmentedControl = {
-        let segmented = UISegmentedControl(items: ["Standard", "Satellite", "Hybrid"])
-        segmented.selectedSegmentIndex = 0
-        segmented.translatesAutoresizingMaskIntoConstraints = false
-        segmented.addTarget(self, action: #selector(changeType(_:)), for: .valueChanged)
-        return segmented
+    let mapTypeButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = .mainColor
+        button.setImage(UIImage(systemName: "map"), for: .normal)
+        button.tintColor = .white
+        button.layer.cornerRadius = 50 / 2
+        button.clipsToBounds = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(typeTapped), for: .touchUpInside)
+        return button
     }()
     
     @IBOutlet weak var mapView: MKMapView!
     
+    let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.backgroundColor = .clear
+        cv.register(PicturesCell.self, forCellWithReuseIdentifier: "picCell")
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        return cv
+    }()
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addSubview(collectionView)
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        view.addSubview(mapTypeButton)
         view.addSubview(userLocationButton)
-        view.addSubview(segmentedControl)
         configurUI()
         
         // map view properties
@@ -64,7 +87,18 @@ class MapViewController: UIViewController {
         
     }
     
-    // MARK: -
+    // MARK: - Selectors
+    
+    // toggle map type when button is selected
+    var isChecked = false
+    @objc func typeTapped() {
+        isChecked = !isChecked
+        if isChecked {
+            mapView.mapType = .satellite
+        } else {
+            mapView.mapType = .standard
+        }
+    }
     
     // center the map on user location and change the button image
     @objc func userLocationTapped() {
@@ -77,36 +111,46 @@ class MapViewController: UIViewController {
         }
     }
     
-    // switch on map type
-    @objc func changeType(_ sgmtControl: UISegmentedControl) {
-        switch sgmtControl.selectedSegmentIndex {
-        case 0:
-            mapView.mapType = .standard
-        case 1:
-            mapView.mapType = .satellite
-        case 2:
-            mapView.mapType = .hybrid
-        default:
-            print("type not found")
-            break
+    // MARK: - Helpers
+    
+    func removePin() {
+        for annotation in mapView.annotations {
+            mapView.removeAnnotation(annotation)
         }
-        
     }
     
-    // MARK: - Helpers
+    func addSpinner() {
+        spinner = UIActivityIndicatorView()
+        spinner?.style = UIActivityIndicatorView.Style.large
+        spinner?.center = CGPoint(x: screenSize.width / 2, y: 100)
+        spinner?.color = .mainColor
+        spinner?.startAnimating()
+        collectionView.addSubview(spinner!)
+    }
+    
+    func removeSpinner() {
+        if spinner != nil {
+            spinner?.removeFromSuperview()
+        }
+    }
     
     func configurUI() {
         let margin = view.layoutMarginsGuide
         
-        userLocationButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        userLocationButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        userLocationButton.trailingAnchor.constraint(equalTo: margin.trailingAnchor, constant: -5).isActive = true
-        userLocationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15).isActive = true
+        collectionView.topAnchor.constraint(equalTo: view.bottomAnchor, constant: -190).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        collectionView.heightAnchor.constraint(equalTo: collectionView.widthAnchor, multiplier: 0.5).isActive = true
         
-        segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25).isActive = true
-        segmentedControl.leadingAnchor.constraint(equalTo: margin.leadingAnchor, constant: 15).isActive = true
-        segmentedControl.trailingAnchor.constraint(equalTo: margin.trailingAnchor, constant: -15).isActive = true
+        userLocationButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        userLocationButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        userLocationButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 110).isActive = true
+        userLocationButton.trailingAnchor.constraint(equalTo: margin.trailingAnchor, constant: -0).isActive = true
         
+        mapTypeButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        mapTypeButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        mapTypeButton.topAnchor.constraint(equalTo: userLocationButton.bottomAnchor, constant: 8).isActive = true
+        mapTypeButton.trailingAnchor.constraint(equalTo: margin.trailingAnchor, constant: -0).isActive = true
     }
 }
 
@@ -114,11 +158,50 @@ class MapViewController: UIViewController {
 
 extension MapViewController: MKMapViewDelegate {
     
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        // return nil to display the default system view (blue beacon)
+        if annotation is MKUserLocation {
+            return nil
+        }
+        
+        // create custom view (pin)
+        let pinAnnotation = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "locationPin")
+        pinAnnotation.pinTintColor = .mainColor
+        pinAnnotation.animatesDrop = true
+        return pinAnnotation
+    }
+    
     // set the region to center the map on user location
     func zoomInUserLocation() {
         guard let coordinate = manager.location?.coordinate else { return }
         let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 1000 , longitudinalMeters: 1000)
         mapView.setRegion(region, animated: true)
+        
+        removeSpinner()
+        removePin()
+        collectionView.reloadData()
+        addSpinner()
+        
+        // drop pin on user location
+        let pinAnnotation = Pin(identifier: "locationPin", coordinate: coordinate)
+        mapView.addAnnotation(pinAnnotation)
+        
+        FlickrService.shared.fetchUrls(forAnnotation: pinAnnotation) { (checked) in
+            if checked {
+                FlickrService.shared.fetchImages { (checked) in
+                    if checked {
+                        // dispatch to the main thread to update UI
+                        DispatchQueue.main.async { [weak self] in
+                            self?.removeSpinner()
+                            self?.collectionView.reloadData()
+                        }
+                    }
+                }
+                
+            }
+        }
+        
     }
     
 }
@@ -137,6 +220,43 @@ extension MapViewController: CLLocationManagerDelegate {
         } else {
             return
         }
+    }
+    
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout\DataSource
+
+extension MapViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: collectionView.frame.width/3.5)
+    }
+}
+
+extension MapViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return FlickrService.shared.pictureArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "picCell", for: indexPath) as! PicturesCell
+        let picOfIndex = FlickrService.shared.pictureArray[indexPath.row]
+        cell.imageView.image = picOfIndex
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "PictureInfoViewController") as! PictureInfoViewController
+        // calculate distance
+        let userLocation = CLLocation(latitude: (manager.location?.coordinate.latitude)!, longitude: (manager.location?.coordinate.longitude)!)
+        let pictureLocation = CLLocation(latitude: 24.853789, longitude: 46.713183)
+        let distance = userLocation.distance(from: pictureLocation) / 1000
+        
+        // pass selected cell data to next view
+        controller.passData(forPic: FlickrService.shared.pictureArray[indexPath.row], forTitle: FlickrService.shared.picTitleArray[indexPath.row], forDistance: String(format: "%.02fkm", distance))
+        present(controller, animated: true)
     }
     
 }
