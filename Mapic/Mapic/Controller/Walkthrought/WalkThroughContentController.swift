@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 class WalkThroughContentController: UIViewController {
     
@@ -30,13 +31,29 @@ class WalkThroughContentController: UIViewController {
     var subHeading = ""
     var imageFiles = ""
     
+    var animationView: AnimationView?
+    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        lottieAnimation()
+        
         headingLabel.text = heading
         subHeadingLabel.text = subHeading
+    }
+    
+    // MARK: - lottieAnimation method
+    
+    func lottieAnimation() {
+        animationView = .init(name: imageFiles)
+        animationView?.frame = CGRect(x: 20, y: 100, width: 366, height: 257)
+        animationView?.contentMode = .scaleAspectFill
+        animationView?.loopMode = .loop
+        animationView?.backgroundBehavior = .pauseAndRestore
+        view.addSubview(animationView!)
+        animationView?.play()
     }
     
 }

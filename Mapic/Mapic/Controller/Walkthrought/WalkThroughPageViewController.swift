@@ -19,11 +19,12 @@ class WalkThroughPageViewController: UIPageViewController, UIPageViewControllerD
     
     var pageHeadings = ["WELCOME", "DISCOVER NEW PLACES"]
     var pageSubHeadings = ["Explore the world with Mapic", "Find pictures shared by people around you"]
+    var pageImages = ["pin", "friends"]
     
     var currentIndex = 0
     
     // MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -71,7 +72,7 @@ class WalkThroughPageViewController: UIPageViewController, UIPageViewControllerD
         if index < 0 || index >= pageHeadings.count {
             return nil
         }
-      
+        
         // create new view controller and pass the data
         let storyboard = UIStoryboard(name: "Onboarding", bundle: nil)
         
@@ -79,6 +80,7 @@ class WalkThroughPageViewController: UIPageViewController, UIPageViewControllerD
             pageContentViewController.index = index
             pageContentViewController.heading = pageHeadings[index]
             pageContentViewController.subHeading = pageSubHeadings[index]
+            pageContentViewController.imageFiles = pageImages[index]
             
             return pageContentViewController
         }

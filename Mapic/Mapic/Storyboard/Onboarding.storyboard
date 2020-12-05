@@ -109,14 +109,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="6p5-58-mtP">
-                                <rect key="frame" x="24" y="134" width="366" height="359"/>
+                                <rect key="frame" x="24" y="150" width="366" height="343"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VfO-at-2Zz" customClass="AnimationView" customModule="Lottie">
-                                        <rect key="frame" x="0.0" y="0.0" width="366" height="257"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="366" height="241"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="iay-nV-ge4">
-                                        <rect key="frame" x="140" y="307" width="86" height="52"/>
+                                        <rect key="frame" x="140" y="291" width="86" height="52"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Heading" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFN-E5-9ub">
                                                 <rect key="frame" x="10" y="0.0" width="66.5" height="21.5"/>
@@ -145,7 +145,7 @@
                             <constraint firstItem="nnh-U2-FjD" firstAttribute="trailing" secondItem="6p5-58-mtP" secondAttribute="trailing" constant="24" id="6CZ-Ex-Zni"/>
                             <constraint firstItem="6p5-58-mtP" firstAttribute="leading" secondItem="nnh-U2-FjD" secondAttribute="leading" constant="24" id="6hU-da-8Oa"/>
                             <constraint firstItem="nnh-U2-FjD" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="6p5-58-mtP" secondAttribute="bottom" constant="10" id="JU4-hy-x7r"/>
-                            <constraint firstItem="6p5-58-mtP" firstAttribute="top" secondItem="QG9-Sq-EXn" secondAttribute="top" constant="134" id="OBz-47-jhP"/>
+                            <constraint firstItem="6p5-58-mtP" firstAttribute="top" secondItem="QG9-Sq-EXn" secondAttribute="top" constant="150" id="OBz-47-jhP"/>
                         </constraints>
                     </view>
                     <size key="freeformSize" width="414" height="623.5"/>

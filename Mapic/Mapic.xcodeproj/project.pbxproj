@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,7 +21,10 @@
 		A5628FF0257BE305002679CD /* WalkThroughContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5628FEF257BE305002679CD /* WalkThroughContentController.swift */; };
 		A5628FF3257BE30D002679CD /* WalkThroughPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5628FF2257BE30D002679CD /* WalkThroughPageViewController.swift */; };
 		A5628FF6257BE314002679CD /* WalkThroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5628FF5257BE314002679CD /* WalkThroughViewController.swift */; };
+		A5628FFA257BE766002679CD /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = A5628FF9257BE766002679CD /* Lottie */; };
 		A5A6EA9025768EF800AB85C5 /* PictureInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A6EA8F25768EF800AB85C5 /* PictureInfoViewController.swift */; };
+		A5B8DC27257BEB0B003279B2 /* friends.json in Resources */ = {isa = PBXBuildFile; fileRef = A5B8DC25257BEB0B003279B2 /* friends.json */; };
+		A5B8DC28257BEB0B003279B2 /* pin.json in Resources */ = {isa = PBXBuildFile; fileRef = A5B8DC26257BEB0B003279B2 /* pin.json */; };
 		D20258880FEFE925331CA830 /* Pods_Mapic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FF75C8F76867D20D5A51607 /* Pods_Mapic.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +48,8 @@
 		A5628FF2257BE30D002679CD /* WalkThroughPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkThroughPageViewController.swift; sourceTree = "<group>"; };
 		A5628FF5257BE314002679CD /* WalkThroughViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkThroughViewController.swift; sourceTree = "<group>"; };
 		A5A6EA8F25768EF800AB85C5 /* PictureInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureInfoViewController.swift; sourceTree = "<group>"; };
+		A5B8DC25257BEB0B003279B2 /* friends.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = friends.json; sourceTree = "<group>"; };
+		A5B8DC26257BEB0B003279B2 /* pin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pin.json; sourceTree = "<group>"; };
 		FD175B83F4BA9BECA2C10933 /* Pods-Mapic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mapic.debug.xcconfig"; path = "Target Support Files/Pods-Mapic/Pods-Mapic.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -54,6 +59,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D20258880FEFE925331CA830 /* Pods_Mapic.framework in Frameworks */,
+				A5628FFA257BE766002679CD /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +113,8 @@
 			children = (
 				A50FA09C2575550100ACE936 /* Extensions.swift */,
 				A50FA08F25750F3B00ACE936 /* Assets.xcassets */,
+				A5B8DC25257BEB0B003279B2 /* friends.json */,
+				A5B8DC26257BEB0B003279B2 /* pin.json */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -184,6 +192,9 @@
 			dependencies = (
 			);
 			name = Mapic;
+			packageProductDependencies = (
+				A5628FF9257BE766002679CD /* Lottie */,
+			);
 			productName = Mapic;
 			productReference = A50FA08325750F3400ACE936 /* Mapic.app */;
 			productType = "com.apple.product-type.application";
@@ -211,6 +222,9 @@
 				Base,
 			);
 			mainGroup = A50FA07A25750F3400ACE936;
+			packageReferences = (
+				A5628FF8257BE766002679CD /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
 			productRefGroup = A50FA08425750F3400ACE936 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -229,6 +243,8 @@
 				A50FA09025750F3B00ACE936 /* Assets.xcassets in Resources */,
 				A50FA08E25750F3400ACE936 /* Main.storyboard in Resources */,
 				A5628FE1257BDDF7002679CD /* Onboarding.storyboard in Resources */,
+				A5B8DC27257BEB0B003279B2 /* friends.json in Resources */,
+				A5B8DC28257BEB0B003279B2 /* pin.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,6 +513,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A5628FF8257BE766002679CD /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.9;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A5628FF9257BE766002679CD /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A5628FF8257BE766002679CD /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A50FA07B25750F3400ACE936 /* Project object */;
 }
