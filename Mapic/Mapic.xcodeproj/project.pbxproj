@@ -18,6 +18,9 @@
 		A518A2C5257919D100F7DD1A /* FlickrService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A518A2C4257919D100F7DD1A /* FlickrService.swift */; };
 		A518A2C825791BB400F7DD1A /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A518A2C725791BB400F7DD1A /* Pin.swift */; };
 		A5628FE1257BDDF7002679CD /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5628FE0257BDDF7002679CD /* Onboarding.storyboard */; };
+		A5628FF0257BE305002679CD /* WalkThroughContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5628FEF257BE305002679CD /* WalkThroughContentController.swift */; };
+		A5628FF3257BE30D002679CD /* WalkThroughPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5628FF2257BE30D002679CD /* WalkThroughPageViewController.swift */; };
+		A5628FF6257BE314002679CD /* WalkThroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5628FF5257BE314002679CD /* WalkThroughViewController.swift */; };
 		A5A6EA9025768EF800AB85C5 /* PictureInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A6EA8F25768EF800AB85C5 /* PictureInfoViewController.swift */; };
 		D20258880FEFE925331CA830 /* Pods_Mapic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FF75C8F76867D20D5A51607 /* Pods_Mapic.framework */; };
 /* End PBXBuildFile section */
@@ -38,6 +41,9 @@
 		A518A2C4257919D100F7DD1A /* FlickrService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrService.swift; sourceTree = "<group>"; };
 		A518A2C725791BB400F7DD1A /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		A5628FE0257BDDF7002679CD /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		A5628FEF257BE305002679CD /* WalkThroughContentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkThroughContentController.swift; sourceTree = "<group>"; };
+		A5628FF2257BE30D002679CD /* WalkThroughPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkThroughPageViewController.swift; sourceTree = "<group>"; };
+		A5628FF5257BE314002679CD /* WalkThroughViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkThroughViewController.swift; sourceTree = "<group>"; };
 		A5A6EA8F25768EF800AB85C5 /* PictureInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureInfoViewController.swift; sourceTree = "<group>"; };
 		FD175B83F4BA9BECA2C10933 /* Pods-Mapic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mapic.debug.xcconfig"; path = "Target Support Files/Pods-Mapic/Pods-Mapic.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -145,6 +151,9 @@
 		A5628FE3257BDE18002679CD /* Walkthrought */ = {
 			isa = PBXGroup;
 			children = (
+				A5628FEF257BE305002679CD /* WalkThroughContentController.swift */,
+				A5628FF2257BE30D002679CD /* WalkThroughPageViewController.swift */,
+				A5628FF5257BE314002679CD /* WalkThroughViewController.swift */,
 			);
 			path = Walkthrought;
 			sourceTree = "<group>";
@@ -272,13 +281,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5628FF3257BE30D002679CD /* WalkThroughPageViewController.swift in Sources */,
 				A50FA08B25750F3400ACE936 /* MapViewController.swift in Sources */,
 				A518A2C5257919D100F7DD1A /* FlickrService.swift in Sources */,
 				A50FA08725750F3400ACE936 /* AppDelegate.swift in Sources */,
 				A518A2C825791BB400F7DD1A /* Pin.swift in Sources */,
+				A5628FF6257BE314002679CD /* WalkThroughViewController.swift in Sources */,
 				A50FA08925750F3400ACE936 /* SceneDelegate.swift in Sources */,
 				A50FA0B32576673F00ACE936 /* PicturesCell.swift in Sources */,
 				A50FA09D2575550100ACE936 /* Extensions.swift in Sources */,
+				A5628FF0257BE305002679CD /* WalkThroughContentController.swift in Sources */,
 				A5A6EA9025768EF800AB85C5 /* PictureInfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
