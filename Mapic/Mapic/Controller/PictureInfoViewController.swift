@@ -13,7 +13,8 @@ class PictureInfoViewController: UIViewController {
     
     var passedIPictures: UIImage!
     var passedTitle: String!
-    
+    var passedDistance: String!
+
     let imageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
@@ -46,6 +47,7 @@ class PictureInfoViewController: UIViewController {
         
         imageView.image = passedIPictures
         titleLabel.text = passedTitle
+        distanceLabel.text = passedDistance
         
         view.addSubview(imageView)
         imageView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -65,9 +67,10 @@ class PictureInfoViewController: UIViewController {
     
     // MARK: - Helpers
     
-    func passData(forPic pic: UIImage, forTitle title: String) {
+    func passData(forPic pic: UIImage, forTitle title: String, forDistance distance: String) {
         self.passedIPictures = pic
         self.passedTitle = title
+        self.passedDistance = distance
     }
     
 }
