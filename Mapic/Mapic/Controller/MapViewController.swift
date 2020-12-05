@@ -112,6 +112,12 @@ class MapViewController: UIViewController {
     
     // MARK: - Helpers
     
+    func removePin() {
+        for annotation in mapView.annotations {
+            mapView.removeAnnotation(annotation)
+        }
+    }
+    
     func addSpinner() {
         spinner = UIActivityIndicatorView()
         spinner?.style = UIActivityIndicatorView.Style.large
@@ -137,7 +143,7 @@ class MapViewController: UIViewController {
         
         userLocationButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         userLocationButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        userLocationButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 90).isActive = true
+        userLocationButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 110).isActive = true
         userLocationButton.trailingAnchor.constraint(equalTo: margin.trailingAnchor, constant: -0).isActive = true
         
         mapTypeButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
@@ -171,6 +177,8 @@ extension MapViewController: MKMapViewDelegate {
         let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 1000 , longitudinalMeters: 1000)
         mapView.setRegion(region, animated: true)
         
+        removeSpinner()
+        removePin()
         collectionView.reloadData()
         addSpinner()
         
@@ -182,9 +190,10 @@ extension MapViewController: MKMapViewDelegate {
             if checked {
                 FlickrService.shared.fetchImages { (checked) in
                     if checked {
-                        DispatchQueue.main.async {
-                            self.removeSpinner()
-                            self.collectionView.reloadData()
+                        // dispatch to the main thread to update UI
+                        DispatchQueue.main.async { [weak self] in
+                            self?.removeSpinner()
+                            self?.collectionView.reloadData()
                         }
                     }
                 }
