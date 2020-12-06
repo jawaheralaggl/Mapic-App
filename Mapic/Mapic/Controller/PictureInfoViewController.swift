@@ -14,7 +14,16 @@ class PictureInfoViewController: UIViewController {
     var passedIPictures: UIImage!
     var passedTitle: String!
     var passedDistance: String!
-
+    var favPicsArray = [UIImage]()
+    
+    let favouriteButton: UIButton = {
+        let btn = UIButton()
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.contentMode = .scaleAspectFill
+        btn.addTarget(self, action: #selector(tappedFavourite), for: .touchUpInside)
+        return btn
+    }()
+    
     let imageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
@@ -45,6 +54,12 @@ class PictureInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // toggle favouriteButton image
+        let image = UIImage(named: "star")
+        let imageFilled = UIImage(named: "star.fill")
+        favouriteButton.setImage(image, for: .normal)
+        favouriteButton.setImage(imageFilled, for: .selected)
+        
         imageView.image = passedIPictures
         titleLabel.text = passedTitle
         distanceLabel.text = passedDistance
@@ -58,11 +73,32 @@ class PictureInfoViewController: UIViewController {
         view.addSubview(titleLabel)
         titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 25).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80).isActive = true
         
         view.addSubview(distanceLabel)
         distanceLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
         distanceLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8).isActive = true
+        
+        view.addSubview(favouriteButton)
+        favouriteButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        favouriteButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        favouriteButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 25).isActive = true
+        favouriteButton.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 50).isActive = true
+        favouriteButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8).isActive = true
+    }
+    
+    // MARK: - Selectors
+    
+    var isChecked = false
+    @objc func tappedFavourite() {
+        favPicsArray = []
+        isChecked = !isChecked
+        if isChecked {
+            favouriteButton.isSelected.toggle()
+            favPicsArray.append(self.passedIPictures)
+        }else{
+            favouriteButton.isSelected.toggle()
+        }
+        
     }
     
     // MARK: - Helpers
