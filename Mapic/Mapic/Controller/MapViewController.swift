@@ -178,6 +178,7 @@ extension MapViewController: MKMapViewDelegate {
         let pinAnnotation = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "locationPin")
         pinAnnotation.pinTintColor = .mainColor
         pinAnnotation.animatesDrop = true
+        pinAnnotation.canShowCallout = true // to display title when user touch the pin
         return pinAnnotation
     }
     
@@ -193,7 +194,7 @@ extension MapViewController: MKMapViewDelegate {
         addSpinner()
         
         // drop pin on user location
-        let pinAnnotation = Pin(identifier: "locationPin", coordinate: coordinate)
+        let pinAnnotation = Pin(identifier: "locationPin", coordinate: coordinate, title: "lat: \(coordinate.latitude), lon: \(coordinate.longitude)")
         mapView.addAnnotation(pinAnnotation)
         
         FlickrService.shared.fetchUrls(forAnnotation: pinAnnotation) { (checked) in
