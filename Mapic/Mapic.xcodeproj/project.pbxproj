@@ -17,6 +17,8 @@
 		A50FA0B32576673F00ACE936 /* PicturesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50FA0B22576673F00ACE936 /* PicturesCell.swift */; };
 		A518A2C5257919D100F7DD1A /* FlickrService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A518A2C4257919D100F7DD1A /* FlickrService.swift */; };
 		A518A2C825791BB400F7DD1A /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A518A2C725791BB400F7DD1A /* Pin.swift */; };
+		A528887A257CF3D900B2C2FE /* FlickrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5288879257CF3D900B2C2FE /* FlickrTests.swift */; };
+		A5288893257D1C2500B2C2FE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5288892257D1C2500B2C2FE /* Constants.swift */; };
 		A5628FE1257BDDF7002679CD /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5628FE0257BDDF7002679CD /* Onboarding.storyboard */; };
 		A5628FF0257BE305002679CD /* WalkThroughContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5628FEF257BE305002679CD /* WalkThroughContentController.swift */; };
 		A5628FF3257BE30D002679CD /* WalkThroughPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5628FF2257BE30D002679CD /* WalkThroughPageViewController.swift */; };
@@ -25,8 +27,19 @@
 		A5A6EA9025768EF800AB85C5 /* PictureInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A6EA8F25768EF800AB85C5 /* PictureInfoViewController.swift */; };
 		A5B8DC27257BEB0B003279B2 /* friends.json in Resources */ = {isa = PBXBuildFile; fileRef = A5B8DC25257BEB0B003279B2 /* friends.json */; };
 		A5B8DC28257BEB0B003279B2 /* pin.json in Resources */ = {isa = PBXBuildFile; fileRef = A5B8DC26257BEB0B003279B2 /* pin.json */; };
+		A5DCB6BA257E91DE00094BA1 /* PicStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DCB6B9257E91DE00094BA1 /* PicStore.swift */; };
 		D20258880FEFE925331CA830 /* Pods_Mapic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FF75C8F76867D20D5A51607 /* Pods_Mapic.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A5288872257CDBC000B2C2FE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A50FA07B25750F3400ACE936 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A50FA08225750F3400ACE936;
+			remoteInfo = Mapic;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0DA8D0B5796398620612C41A /* Pods-Mapic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mapic.release.xcconfig"; path = "Target Support Files/Pods-Mapic/Pods-Mapic.release.xcconfig"; sourceTree = "<group>"; };
@@ -43,6 +56,10 @@
 		A50FA0B22576673F00ACE936 /* PicturesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturesCell.swift; sourceTree = "<group>"; };
 		A518A2C4257919D100F7DD1A /* FlickrService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrService.swift; sourceTree = "<group>"; };
 		A518A2C725791BB400F7DD1A /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
+		A528886D257CDBC000B2C2FE /* MapicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5288871257CDBC000B2C2FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5288879257CF3D900B2C2FE /* FlickrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrTests.swift; sourceTree = "<group>"; };
+		A5288892257D1C2500B2C2FE /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A5628FE0257BDDF7002679CD /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		A5628FEF257BE305002679CD /* WalkThroughContentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkThroughContentController.swift; sourceTree = "<group>"; };
 		A5628FF2257BE30D002679CD /* WalkThroughPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkThroughPageViewController.swift; sourceTree = "<group>"; };
@@ -50,6 +67,7 @@
 		A5A6EA8F25768EF800AB85C5 /* PictureInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureInfoViewController.swift; sourceTree = "<group>"; };
 		A5B8DC25257BEB0B003279B2 /* friends.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = friends.json; sourceTree = "<group>"; };
 		A5B8DC26257BEB0B003279B2 /* pin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pin.json; sourceTree = "<group>"; };
+		A5DCB6B9257E91DE00094BA1 /* PicStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicStore.swift; sourceTree = "<group>"; };
 		FD175B83F4BA9BECA2C10933 /* Pods-Mapic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mapic.debug.xcconfig"; path = "Target Support Files/Pods-Mapic/Pods-Mapic.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,6 +78,13 @@
 			files = (
 				D20258880FEFE925331CA830 /* Pods_Mapic.framework in Frameworks */,
 				A5628FFA257BE766002679CD /* Lottie in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A528886A257CDBC000B2C2FE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				A50FA08525750F3400ACE936 /* Mapic */,
+				A528886E257CDBC000B2C2FE /* MapicTests */,
 				A50FA08425750F3400ACE936 /* Products */,
 				39411D74A98BCD19D68F6505 /* Pods */,
 				A86940963449A96B92072468 /* Frameworks */,
@@ -89,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				A50FA08325750F3400ACE936 /* Mapic.app */,
+				A528886D257CDBC000B2C2FE /* MapicTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -143,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				A518A2C4257919D100F7DD1A /* FlickrService.swift */,
+				A5DCB6B9257E91DE00094BA1 /* PicStore.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -154,6 +182,16 @@
 				A518A2C725791BB400F7DD1A /* Pin.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		A528886E257CDBC000B2C2FE /* MapicTests */ = {
+			isa = PBXGroup;
+			children = (
+				A5288892257D1C2500B2C2FE /* Constants.swift */,
+				A5288879257CF3D900B2C2FE /* FlickrTests.swift */,
+				A5288871257CDBC000B2C2FE /* Info.plist */,
+			);
+			path = MapicTests;
 			sourceTree = "<group>";
 		};
 		A5628FE3257BDE18002679CD /* Walkthrought */ = {
@@ -199,6 +237,24 @@
 			productReference = A50FA08325750F3400ACE936 /* Mapic.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A528886C257CDBC000B2C2FE /* MapicTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A5288876257CDBC000B2C2FE /* Build configuration list for PBXNativeTarget "MapicTests" */;
+			buildPhases = (
+				A5288869257CDBC000B2C2FE /* Sources */,
+				A528886A257CDBC000B2C2FE /* Frameworks */,
+				A528886B257CDBC000B2C2FE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A5288873257CDBC000B2C2FE /* PBXTargetDependency */,
+			);
+			name = MapicTests;
+			productName = MapicTests;
+			productReference = A528886D257CDBC000B2C2FE /* MapicTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -210,6 +266,10 @@
 				TargetAttributes = {
 					A50FA08225750F3400ACE936 = {
 						CreatedOnToolsVersion = 12.0.1;
+					};
+					A528886C257CDBC000B2C2FE = {
+						CreatedOnToolsVersion = 12.0.1;
+						TestTargetID = A50FA08225750F3400ACE936;
 					};
 				};
 			};
@@ -230,6 +290,7 @@
 			projectRoot = "";
 			targets = (
 				A50FA08225750F3400ACE936 /* Mapic */,
+				A528886C257CDBC000B2C2FE /* MapicTests */,
 			);
 		};
 /* End PBXProject section */
@@ -245,6 +306,13 @@
 				A5628FE1257BDDF7002679CD /* Onboarding.storyboard in Resources */,
 				A5B8DC27257BEB0B003279B2 /* friends.json in Resources */,
 				A5B8DC28257BEB0B003279B2 /* pin.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A528886B257CDBC000B2C2FE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +367,7 @@
 			files = (
 				A5628FF3257BE30D002679CD /* WalkThroughPageViewController.swift in Sources */,
 				A50FA08B25750F3400ACE936 /* MapViewController.swift in Sources */,
+				A5DCB6BA257E91DE00094BA1 /* PicStore.swift in Sources */,
 				A518A2C5257919D100F7DD1A /* FlickrService.swift in Sources */,
 				A50FA08725750F3400ACE936 /* AppDelegate.swift in Sources */,
 				A518A2C825791BB400F7DD1A /* Pin.swift in Sources */,
@@ -311,7 +380,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A5288869257CDBC000B2C2FE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A528887A257CF3D900B2C2FE /* FlickrTests.swift in Sources */,
+				A5288893257D1C2500B2C2FE /* Constants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A5288873257CDBC000B2C2FE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A50FA08225750F3400ACE936 /* Mapic */;
+			targetProxy = A5288872257CDBC000B2C2FE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A50FA08C25750F3400ACE936 /* Main.storyboard */ = {
@@ -491,6 +577,46 @@
 			};
 			name = Release;
 		};
+		A5288874257CDBC000B2C2FE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6W4MA25Y33;
+				INFOPLIST_FILE = MapicTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jawaLed.MapicTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mapic.app/Mapic";
+			};
+			name = Debug;
+		};
+		A5288875257CDBC000B2C2FE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6W4MA25Y33;
+				INFOPLIST_FILE = MapicTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jawaLed.MapicTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mapic.app/Mapic";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -508,6 +634,15 @@
 			buildConfigurations = (
 				A50FA09825750F3B00ACE936 /* Debug */,
 				A50FA09925750F3B00ACE936 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A5288876257CDBC000B2C2FE /* Build configuration list for PBXNativeTarget "MapicTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5288874257CDBC000B2C2FE /* Debug */,
+				A5288875257CDBC000B2C2FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
