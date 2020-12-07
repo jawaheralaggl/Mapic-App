@@ -27,6 +27,17 @@ class FlickrService {
         return url
     }
     
+    // Image Caching
+    func cache(_ image: Image, for url: String) {
+        imageCache.add(image, withIdentifier: url)
+    }
+    
+    func cachedImage(for url: String) -> Image? {
+        return imageCache.image(withIdentifier: url)
+    }
+    
+    let imageCache = AutoPurgingImageCache(memoryCapacity: UInt64(100).megabytes(), preferredMemoryUsageAfterPurge: UInt64(60).megabytes())
+    
     // MARK: - Helpers
     
     func fetchUrls(forAnnotation annotation: Pin, handler: @escaping (_ status: Bool) -> ()) {
@@ -52,7 +63,9 @@ class FlickrService {
                     self.picTitleArray.append(pic["title"] as! String)
                 }
             }
-            handler(true)
+            DispatchQueue.main.async {
+                handler(true)
+            }
         }
     }
     
@@ -69,12 +82,22 @@ class FlickrService {
                 
                 // check if all pictures has been downloaded successfully
                 if self.pictureArray.count == self.picUrlArray.count {
-                    handler(true)
+                    DispatchQueue.main.async {
+                        handler(true)
+                        self.cache(imageResponse, for: url)
+                    }
                 }
             }
         }
         
     }
     
+    
+}
+extension UInt64 {
+    
+    func megabytes() -> UInt64 {
+        return self * 1024 * 1024
+    }
     
 }

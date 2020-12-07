@@ -61,11 +61,17 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(collectionView)
+        // display Onboarding screens
+        let storyboard = UIStoryboard(name: "Onboarding", bundle: nil)
+        if let walkthroughVC = storyboard.instantiateViewController(withIdentifier: "WalkThroughViewController") as? WalkThroughViewController {
+            walkthroughVC.modalPresentationStyle = .fullScreen
+            present(walkthroughVC, animated: true, completion: nil)
+        }
         
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        view.addSubview(collectionView)
         view.addSubview(mapTypeButton)
         view.addSubview(userLocationButton)
         configurUI()
@@ -85,6 +91,9 @@ class MapViewController: UIViewController {
             manager.startUpdatingLocation()
         }
         
+        // register peek and pop if available
+        guard traitCollection.forceTouchCapability == .available else { return }
+        registerForPreviewing(with: self, sourceView: collectionView)
     }
     
     // MARK: - Selectors
@@ -242,7 +251,9 @@ extension MapViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "picCell", for: indexPath) as! PicturesCell
         let picOfIndex = FlickrService.shared.pictureArray[indexPath.row]
-        cell.imageView.image = picOfIndex
+        DispatchQueue.main.async {
+            cell.imageView.image = picOfIndex
+        }
         return cell
     }
     
@@ -259,4 +270,32 @@ extension MapViewController: UICollectionViewDataSource {
         present(controller, animated: true)
     }
     
+}
+
+// MARK: - UIViewControllerPreviewingDelegate
+
+// conforming to 3D touch delegate
+extension MapViewController: UIViewControllerPreviewingDelegate {
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        
+        // get the index path of the cell we are force touching on
+        guard let indexPath = collectionView.indexPathForItem(at: location) else {return nil}
+        // get the actual cell instance for the index path
+        guard let cell = collectionView.cellForItem(at: indexPath) else {return nil}
+        
+        guard let infoVC = storyboard?.instantiateViewController(withIdentifier: "PictureInfoViewController") as? PictureInfoViewController else {return nil}
+        infoVC.passData(forPic: FlickrService.shared.pictureArray[indexPath.row], forTitle: FlickrService.shared.picTitleArray[indexPath.row], forDistance: "")
+        
+        // set the content size for the info view controller
+        infoVC.preferredContentSize = CGSize(width: 0, height: 300)
+        // set the source rect of the previewing context
+        previewingContext.sourceRect = cell.frame
+        return infoVC
+    }
+    
+    // to preview the context "peek"
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        present(viewControllerToCommit, animated: true, completion: nil)
+    }
 }
