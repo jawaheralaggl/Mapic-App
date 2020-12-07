@@ -32,4 +32,4 @@ Shows pictures based on user location with Mapkit
 - Git / Github
 
 # Demo
-![Demo](https://github.com/jawaheralaggl/Mapic-App/blob/main/MapicDemo.mov)
+![Demo](https://github.com/jawaheralaggl/Mapic-App/blob/main/MapicDemo.gif)
