@@ -13,6 +13,8 @@ class MapViewController: UIViewController {
     
     // MARK: - Properties
     
+    let picStore = PicStore()
+    
     var manager = CLLocationManager() 
     let authorizationStatus = CLLocationManager.authorizationStatus() //TODO: find replacement
     var pinCoordinate: CLLocationCoordinate2D!
@@ -251,10 +253,7 @@ extension MapViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "picCell", for: indexPath) as! PicturesCell
-        let picOfIndex = FlickrService.shared.pictureArray[indexPath.row]
-        DispatchQueue.main.async {
-            cell.imageView.image = picOfIndex
-        }
+        
         return cell
     }
     
@@ -269,6 +268,30 @@ extension MapViewController: UICollectionViewDataSource {
         // pass selected cell data to next view
         controller.passData(forPic: FlickrService.shared.pictureArray[indexPath.row], forTitle: FlickrService.shared.picTitleArray[indexPath.row], forDistance: String(format: "%.02fkm", distance))
         present(controller, animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let cell = cell as? PicturesCell else { return }
+        
+        // obtain the item number of the cell
+        let itemNum = NSNumber(value: indexPath.item)
+        
+        // if a cached picture is found, retrieve and assign it to the UIImageView
+        if let cashedPic = picStore.cache.object(forKey: itemNum) {
+            print("using cashed picture for item: \(itemNum)")
+            DispatchQueue.main.async {
+                cell.imageView.image = cashedPic
+            }
+        }else{
+            // if not, load the picture
+            let picOfIndex = FlickrService.shared.pictureArray[indexPath.row]
+            DispatchQueue.main.async {
+                cell.imageView.image = picOfIndex
+            }
+            // store the loaded picture inside the NSCache
+            picStore.setPicture(picOfIndex, forKey: itemNum)
+        }
+        
     }
     
 }
