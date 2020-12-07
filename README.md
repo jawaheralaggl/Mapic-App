@@ -2,7 +2,7 @@
 Second capstone assignment from BNR iOS Bootcamp
 
 # Objective
-shows pictures based on user location with Mapkit
+Shows pictures based on user location with Mapkit
 
 # Features:
 - Onboarding screens — walkthroughs — to introduce the app and demonstrate what it does
