@@ -15,6 +15,15 @@ class PictureInfoViewController: UIViewController {
     var passedTitle: String!
     var favPicsArray = [UIImage]()
     
+    let shareButton: UIButton = {
+        let btn = UIButton()
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.setImage(UIImage(named: "share"), for: .normal)
+        btn.contentMode = .scaleAspectFill
+        btn.addTarget(self, action: #selector(tappedShare), for: .touchUpInside)
+        return btn
+    }()
+    
     let favouriteButton: UIButton = {
         let btn = UIButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
@@ -68,6 +77,7 @@ class PictureInfoViewController: UIViewController {
         imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
         view.addSubview(titleLabel)
+        titleLabel.widthAnchor.constraint(equalToConstant: 250).isActive = true
         titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 25).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8).isActive = true
         
@@ -75,15 +85,43 @@ class PictureInfoViewController: UIViewController {
         distanceLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
         distanceLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8).isActive = true
         
+        view.addSubview(shareButton)
+        shareButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        shareButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        shareButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 25).isActive = true
+        shareButton.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 75).isActive = true
+        
         view.addSubview(favouriteButton)
         favouriteButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
         favouriteButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
         favouriteButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 25).isActive = true
-        favouriteButton.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 50).isActive = true
+        favouriteButton.leadingAnchor.constraint(equalTo: shareButton.trailingAnchor, constant: 8).isActive = true
         favouriteButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8).isActive = true
     }
     
     // MARK: - Selectors
+    
+    @objc func tappedShare() {
+        // picture to share
+        let pics = passedIPictures
+        
+        // set up activity view controller
+        let picToShare = [ pics! ]
+        let activityViewController = UIActivityViewController(activityItems: picToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        
+        // exclude some activity types from the list (optional)
+        activityViewController.excludedActivityTypes = [
+            UIActivity.ActivityType.airDrop,
+            UIActivity.ActivityType.print,
+            UIActivity.ActivityType.saveToCameraRoll,
+            UIActivity.ActivityType.postToFlickr,
+            UIActivity.ActivityType.postToFacebook
+        ]
+        
+        // present the view controller
+        self.present(activityViewController, animated: true, completion: nil)
+    }
     
     var isChecked = false
     @objc func tappedFavourite() {
