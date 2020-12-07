@@ -13,7 +13,6 @@ class PictureInfoViewController: UIViewController {
     
     var passedIPictures: UIImage!
     var passedTitle: String!
-    var passedDistance: String!
     var favPicsArray = [UIImage]()
     
     let favouriteButton: UIButton = {
@@ -45,7 +44,6 @@ class PictureInfoViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = .mainColor
-        label.text = "1.0 km"
         return label
     }()
     
@@ -62,7 +60,6 @@ class PictureInfoViewController: UIViewController {
         
         imageView.image = passedIPictures
         titleLabel.text = passedTitle
-        distanceLabel.text = passedDistance
         
         view.addSubview(imageView)
         imageView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -103,10 +100,9 @@ class PictureInfoViewController: UIViewController {
     
     // MARK: - Helpers
     
-    func passData(forPic pic: UIImage, forTitle title: String, forDistance distance: String) {
+    func passData(forPic pic: UIImage, forTitle title: String) {
         self.passedIPictures = pic
         self.passedTitle = title
-        self.passedDistance = distance
     }
     
 }

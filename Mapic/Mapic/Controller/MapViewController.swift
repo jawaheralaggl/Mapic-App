@@ -16,7 +16,7 @@ class MapViewController: UIViewController {
     let picStore = PicStore()
     
     var manager = CLLocationManager() 
-    let authorizationStatus = CLLocationManager.authorizationStatus() //TODO: find replacement
+    let authorizationStatus = CLLocationManager.authorizationStatus()
     var pinCoordinate: CLLocationCoordinate2D!
     var spinner: UIActivityIndicatorView?
     var screenSize = UIScreen.main.bounds
@@ -260,13 +260,9 @@ extension MapViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "PictureInfoViewController") as! PictureInfoViewController
-        // calculate distance
-        let userLocation = CLLocation(latitude: (manager.location?.coordinate.latitude)!, longitude: (manager.location?.coordinate.longitude)!)
-        let pictureLocation = CLLocation(latitude: 24.853789, longitude: 46.713183)
-        let distance = userLocation.distance(from: pictureLocation) / 1000
         
         // pass selected cell data to next view
-        controller.passData(forPic: FlickrService.shared.pictureArray[indexPath.row], forTitle: FlickrService.shared.picTitleArray[indexPath.row], forDistance: String(format: "%.02fkm", distance))
+        controller.passData(forPic: FlickrService.shared.pictureArray[indexPath.row], forTitle: FlickrService.shared.picTitleArray[indexPath.row])
         present(controller, animated: true)
     }
     
@@ -309,7 +305,7 @@ extension MapViewController: UIViewControllerPreviewingDelegate {
         guard let cell = collectionView.cellForItem(at: indexPath) else {return nil}
         
         guard let infoVC = storyboard?.instantiateViewController(withIdentifier: "PictureInfoViewController") as? PictureInfoViewController else {return nil}
-        infoVC.passData(forPic: FlickrService.shared.pictureArray[indexPath.row], forTitle: FlickrService.shared.picTitleArray[indexPath.row], forDistance: "")
+        infoVC.passData(forPic: FlickrService.shared.pictureArray[indexPath.row], forTitle: FlickrService.shared.picTitleArray[indexPath.row])
         
         // set the content size for the info view controller
         infoVC.preferredContentSize = CGSize(width: 0, height: 300)
