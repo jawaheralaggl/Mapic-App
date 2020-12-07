@@ -12,6 +12,7 @@ Shows pictures based on user location with Mapkit
 - Toggle map type 
 - Tap CollectionViewCell to see full image
 - See a sneak peak of full image with peek and pop using 3D Touch
+- Ability to share pictures with other apps
 - Mark picture as favorite (future work)
  
 
